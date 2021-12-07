@@ -30,7 +30,7 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="login" style={{ marginTop: "25%" }}>
         <button className="btn btn-success" onClick={this.onLogin}>
           Login
         </button>

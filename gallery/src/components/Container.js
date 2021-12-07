@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "../styles/Container.css";
+import firebase from "../firebase";
 import { setImages } from "../actions/index";
 import unsplash from "../api/unsplash";
 import Search from "../components/Search";
@@ -24,10 +25,29 @@ class Container extends React.Component {
   };
 
   render() {
+    console.log(this.state.user);
     return (
       <div className="container">
         <div className="header">
-          <p className="user-name">{this.state.user.displayName}</p>
+          <div className="userDetails">
+            <div className="userImg">
+              <img src={this.state.user.photoURL} alt="Not found" />
+            </div>
+            <p className="name">{this.state.user.displayName}</p>
+          </div>
+          <button
+            className="btn btn-danger logoutBtn"
+            onClick={() => {
+              firebase
+                .auth()
+                .signOut()
+                .then(() => {
+                  window.location.assign("/");
+                });
+            }}
+          >
+            Sign Out
+          </button>
         </div>
         <Search onSearch={this.onSearch} />
         <ImageList />
