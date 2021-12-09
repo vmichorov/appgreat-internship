@@ -4,11 +4,6 @@ import { GoogleAuthProvider } from "firebase/auth";
 import firebase from "../firebase";
 
 class Login extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-
   onLogin = async () => {
     let provider = new GoogleAuthProvider();
     firebase.auth().setPersistence("session");

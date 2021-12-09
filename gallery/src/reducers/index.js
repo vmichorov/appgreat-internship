@@ -7,6 +7,14 @@ const imagesReducer = (images = [], action) => {
   return images;
 };
 
+const wordReducer = (word = "", action) => {
+  if (action.type === "SET_WORD") {
+    return action.payload;
+  }
+  return word;
+};
+
 export default combineReducers({
   images: imagesReducer,
+  word: wordReducer,
 });

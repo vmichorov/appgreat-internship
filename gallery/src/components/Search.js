@@ -1,13 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
 
 import "../styles/Search.css";
+import { setWord } from "../actions";
 
 class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { term: "" };
-  }
-
   render() {
     return (
       <div className="search">
@@ -17,9 +14,9 @@ class Search extends React.Component {
             type="text"
             className="form-control"
             placeholder="Search..."
-            value={this.state.term}
+            value={this.props.word}
             onChange={(ev) => {
-              this.setState({ term: ev.target.value });
+              this.props.setWord(ev.target.value);
               this.props.onSearch(ev.target.value);
             }}
           />
@@ -29,4 +26,8 @@ class Search extends React.Component {
   }
 }
 
-export default Search;
+const mapStateToProps = (state) => {
+  return { word: state.word };
+};
+
+export default connect(mapStateToProps, { setWord })(Search);
